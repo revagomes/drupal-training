@@ -1,0 +1,24 @@
+language: php
+php:
+  - '5.6'
+
+services:
+  - docker
+
+# Production Env Setup
+before_install:
+  - docker-compose run app
+
+script:
+  - echo "Deploy Running..."
+  - ./deploy-dev.sh
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./deploy-dev.sh
+    on:
+      branch: dev
+
+after_success:
+  - echo "Deployed Successfully! \o/"
