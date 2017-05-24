@@ -5,13 +5,12 @@ php:
 services:
   - docker
 
-# Production Env Setup
+# Env Setup
 before_install:
-  - docker-compose run app
+  - docker-compose run app ./deploy-dev.sh
 
 script:
   - echo "Deploy Running..."
-  - ./deploy-dev.sh
 
 deploy:
   - provider: script
